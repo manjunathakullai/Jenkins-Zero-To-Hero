@@ -4,9 +4,9 @@ pipeline {
     stage('Back-end') {
       agent {
         docker { image 'maven:3.8.1-adoptopenjdk-11' }
-        echo "maven version is fetched successfully "
       }
       steps {
+        echo "maven version is fetched successfully"
         sh 'mvn --version'
       }
     }
@@ -17,9 +17,17 @@ pipeline {
       steps {
         sh 'node --version'
         echo "all the stages are completed successfully"
-        echo "this is i have implemented the webhook concept of triggerring the pipeline of jenkins"
+        echo "this is i have implemented the webhook concept of triggering the pipeline of jenkins"
       }
-      
+    }
+    stage('Docker Version') {
+      agent {
+        docker { image 'docker:latest' }
+      }
+      steps {
+        sh 'docker --version'
+        echo "docker version fetched successfully"
+      }
     }
   }
 }
